@@ -1,0 +1,40 @@
+import { RoomRequest } from '../types';
+
+export const initialRequests: RoomRequest[] = [
+  {
+    id: 'REQ-2026-001',
+    category: 'Housekeeping & Cleaning',
+    categoryIcon: 'sparkles',
+    subject: 'Room Cleaning',
+    description: 'Please clean the room and replace all amenities.',
+    priority: 'Normal',
+    status: 'Completed',
+    submittedAt: 'Jul 1, 2026 at 9:00 AM',
+    estimatedTime: '15–30 min',
+    staffName: 'Maria S.',
+    completedAt: 'Jul 1, 2026 at 9:22 AM',
+  },
+  {
+    id: 'REQ-2026-002',
+    category: 'Linen & Towels',
+    categoryIcon: 'bed.double.fill',
+    subject: 'Extra Towels',
+    description: 'Please bring two additional bath towels.',
+    priority: 'Normal',
+    status: 'In Progress',
+    submittedAt: 'Jul 1, 2026 at 2:15 PM',
+    estimatedTime: '10–20 min',
+    staffName: 'James T.',
+  },
+  {
+    id: 'REQ-2026-003',
+    category: 'Food & Beverage Service',
+    categoryIcon: 'cup.and.saucer.fill',
+    subject: 'Ice & Water',
+    description: 'Please bring a bucket of ice and two bottles of still water.',
+    priority: 'High',
+    status: 'Accepted',
+    submittedAt: 'Jul 1, 2026 at 4:30 PM',
+    estimatedTime: '15–25 min',
+  },
+];
