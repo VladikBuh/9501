@@ -114,7 +114,7 @@ export default function SplashScreen({ onFinish }: Props) {
 
   return (
     <ImageBackground
-      source={require('../assets/wood-room-hub-loader-bg.png')}
+      source={require('../assets/wood-room-hub-onboardbg4.png')}
       style={styles.SplashScreenFacetChassis}
       resizeMode="cover"
     >
@@ -122,6 +122,12 @@ export default function SplashScreen({ onFinish }: Props) {
         <Image
           source={require('../assets/wood-room-hub-loader-icon.png')}
           resizeMode="contain"
+          style={{
+            width: 250,
+            height: 250,
+            borderRadius: 50,
+            marginBottom: 30,
+          }}
         />
       </Animated.View>
 
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
 
   SplashScreenLoaderWrap: {
     position: 'absolute',
-    bottom: 50,
+    bottom: 30,
     alignItems: 'center',
   },
 });

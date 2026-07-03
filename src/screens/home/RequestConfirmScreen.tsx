@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -42,6 +43,10 @@ export default function RequestConfirmScreen() {
 
   return (
     <View style={styles.RequestConfirmScreenFacetChassis}>
+      <ScrollView
+        contentContainerStyle={styles.RequestConfirmScreenScrollContent}
+        showsVerticalScrollIndicator={false}
+      >
       <Animated.View
         style={[
           styles.RequestConfirmScreenIconEnclave,
@@ -92,6 +97,7 @@ export default function RequestConfirmScreen() {
           Back to Home
         </Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -124,9 +130,13 @@ const styles = StyleSheet.create({
   RequestConfirmScreenFacetChassis: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  RequestConfirmScreenScrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.xl,
     gap: Spacing.lg,
   },
   RequestConfirmScreenIconEnclave: {

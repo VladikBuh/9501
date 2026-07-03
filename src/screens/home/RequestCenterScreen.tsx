@@ -12,6 +12,7 @@ import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { HomeStackParamList } from '../../types';
 import { requestCategories } from '../../data/requestCategories';
 import { PressableCard } from '../../components/common/PressableCard';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<HomeStackParamList>;
 
@@ -25,6 +26,10 @@ export default function RequestCenterScreen() {
       contentContainerStyle={styles.RequestCenterScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader
+        title="Room Requests"
+        onBack={() => navigation.goBack()}
+      />
       <Text style={styles.RequestCenterScreenIntroFiligree}>
         Select a category to submit a request. Our staff typically responds
         within minutes.

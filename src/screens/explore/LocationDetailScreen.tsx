@@ -8,6 +8,7 @@ import {
   Linking,
   Image,
   Share,
+  Platform,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -56,6 +57,19 @@ export default function LocationDetailScreen() {
             ]}
             style={styles.LocationDetailScreenHeroGradient}
           />
+          {Platform.OS === 'android' && (
+            <TouchableOpacity
+              style={[
+                styles.LocationDetailScreenBackPortico,
+                { top: insets.top + 12 },
+              ]}
+              onPress={() => navigation.goBack()}
+            >
+              <Text style={styles.LocationDetailScreenBackPorticoFiligree}>
+                ‹
+              </Text>
+            </TouchableOpacity>
+          )}
           <View
             style={[
               styles.LocationDetailScreenHeroContentEnclave,
@@ -114,51 +128,38 @@ export default function LocationDetailScreen() {
           )}
 
           {/* Map placeholder */}
+        </View>
+        <View
+          style={[
+            styles.LocationDetailScreenBottomBarLintel,
+            { paddingBottom: insets.bottom + 16 },
+          ]}
+        >
           <TouchableOpacity
-            style={styles.LocationDetailScreenMapEnclave}
-            onPress={handleOpenMaps}
-            activeOpacity={0.8}
+            style={styles.LocationDetailScreenActionPortico}
+            onPress={handleShare}
           >
-            <Text style={styles.LocationDetailScreenMapEmojiSigil}>🗺️</Text>
-            <Text style={styles.LocationDetailScreenMapTextFiligree}>
-              Tap to Open in Maps
+            <Text style={styles.LocationDetailScreenActionPorticoFiligree}>
+              Share
             </Text>
-            <Text style={styles.LocationDetailScreenMapCoordsFiligree}>
-              {location.coordinates}
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.LocationDetailScreenActionPortico,
+              styles.LocationDetailScreenPrimaryPortico,
+            ]}
+            onPress={() =>
+              (navigation.getParent() as any)?.navigate('TransportTab')
+            }
+          >
+            <Text style={styles.LocationDetailScreenPrimaryPorticoFiligree}>
+              Book Hotel Car
             </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
 
       {/* Bottom actions */}
-      <View
-        style={[
-          styles.LocationDetailScreenBottomBarLintel,
-          { paddingBottom: insets.bottom + 16 },
-        ]}
-      >
-        <TouchableOpacity
-          style={styles.LocationDetailScreenActionPortico}
-          onPress={handleShare}
-        >
-          <Text style={styles.LocationDetailScreenActionPorticoFiligree}>
-            Share
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.LocationDetailScreenActionPortico,
-            styles.LocationDetailScreenPrimaryPortico,
-          ]}
-          onPress={() =>
-            (navigation.getParent() as any)?.navigate('TransportTab')
-          }
-        >
-          <Text style={styles.LocationDetailScreenPrimaryPorticoFiligree}>
-            Book Hotel Car
-          </Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -205,6 +206,21 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     padding: Spacing.md,
+  },
+  LocationDetailScreenBackPortico: {
+    position: 'absolute',
+    left: Spacing.md,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  LocationDetailScreenBackPorticoFiligree: {
+    ...Typography.title2,
+    color: Colors.white,
+    marginTop: -2,
   },
   LocationDetailScreenCategoryChipBadge: {
     backgroundColor: Colors.redMuted,

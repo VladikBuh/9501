@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -17,6 +18,7 @@ import { DiningStackParamList } from '../../types';
 import { menuItems, diningCategories } from '../../data/menuItems';
 import { PressableCard } from '../../components/common/PressableCard';
 import { SectionHeader } from '../../components/common/SectionHeader';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 import { useCart } from '../../hooks/useCart';
 
@@ -56,6 +58,26 @@ export default function DiningScreen() {
       contentContainerStyle={styles.DiningScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      {Platform.OS === 'android' && (
+        <View style={styles.DiningScreenTitleRowLintel}>
+          <ScreenTitleHeader title="Room Dining" />
+          {totalItems > 0 && (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Cart')}
+              activeOpacity={0.7}
+            >
+              <View style={styles.DiningScreenCartHeaderPortico}>
+                <Text style={styles.DiningScreenCartHeaderEmojiSigil}>🛒</Text>
+                <View style={styles.DiningScreenCartHeaderChipBadge}>
+                  <Text style={styles.DiningScreenCartHeaderChipFiligree}>
+                    {totalItems > 9 ? '9+' : totalItems}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
       {/* Featured banner */}
       <PressableCard
         style={styles.DiningScreenFeaturedCardFacetChassis}
@@ -170,6 +192,11 @@ export default function DiningScreen() {
 
 const styles = StyleSheet.create({
   DiningScreenFacetChassis: { flex: 1, backgroundColor: Colors.background },
+  DiningScreenTitleRowLintel: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
   DiningScreenScrollContent: {
     padding: Spacing.md,
     paddingTop: 15,

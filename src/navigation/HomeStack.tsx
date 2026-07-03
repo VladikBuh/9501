@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { HomeStackParamList } from '../types';
@@ -30,22 +31,22 @@ export const HomeStack = () => (
     <Stack.Screen
       name="RequestCenter"
       component={RequestCenterScreen}
-      options={{ title: 'Room Requests', headerLargeTitle: true }}
+      options={{ title: 'Room Requests', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="RequestForm"
       component={RequestFormScreen}
-      options={{ title: 'New Request', headerLargeTitle: true }}
+      options={{ title: 'New Request', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="RequestConfirm"
       component={RequestConfirmScreen}
-      options={{ title: '', headerBackTitle: '' }}
+      options={{ title: '', headerShown: false }}
     />
     <Stack.Screen
       name="RequestTracking"
       component={RequestTrackingScreen}
-      options={{ title: 'Track Request', headerLargeTitle: true }}
+      options={{ title: 'Track Request', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
   </Stack.Navigator>
 );

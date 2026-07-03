@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { DiningStackParamList } from '../types';
@@ -26,17 +27,17 @@ export const DiningStack = () => (
     <Stack.Screen
       name="Dining"
       component={DiningScreen}
-      options={{ title: 'Room Dining', headerLargeTitle: true }}
+      options={{ title: 'Room Dining', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="FoodCategory"
       component={FoodCategoryScreen}
-      options={({ route }) => ({ title: route.params.category, headerLargeTitle: true })}
+      options={({ route }) => ({ title: route.params.category, headerLargeTitle: true, headerShown: Platform.OS === 'ios' })}
     />
     <Stack.Screen
       name="FoodDetail"
       component={FoodDetailScreen}
-      options={{ title: '', headerTransparent: true, headerLargeTitle: false }}
+      options={{ title: '', headerTransparent: true, headerLargeTitle: false, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="Cart"
@@ -46,7 +47,7 @@ export const DiningStack = () => (
     <Stack.Screen
       name="Checkout"
       component={CheckoutScreen}
-      options={{ title: 'Checkout', headerLargeTitle: true }}
+      options={{ title: 'Checkout', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="OrderConfirm"

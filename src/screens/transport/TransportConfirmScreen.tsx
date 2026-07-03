@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
@@ -38,6 +39,10 @@ export default function TransportConfirmScreen() {
 
   return (
     <View style={styles.TransportConfirmScreenFacetChassis}>
+      <ScrollView
+        contentContainerStyle={styles.TransportConfirmScreenScrollContent}
+        showsVerticalScrollIndicator={false}
+      >
       <Animated.View style={{ transform: [{ scale }] }}>
         <Text style={styles.TransportConfirmScreenIconSigil}>🚗</Text>
       </Animated.View>
@@ -92,6 +97,7 @@ export default function TransportConfirmScreen() {
           Return Home
         </Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -115,9 +121,13 @@ const styles = StyleSheet.create({
   TransportConfirmScreenFacetChassis: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  TransportConfirmScreenScrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.xl,
     gap: Spacing.md,
   },
 

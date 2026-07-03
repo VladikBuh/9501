@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { ExploreStackParamList } from '../types';
@@ -19,7 +20,7 @@ export const ExploreStack = () => (
       contentStyle: { backgroundColor: Colors.background },
     }}
   >
-    <Stack.Screen name="Explore" component={ExploreScreen} options={{ title: 'Explore Toronto', headerLargeTitle: true }} />
-    <Stack.Screen name="LocationDetail" component={LocationDetailScreen} options={{ title: '', headerTransparent: true, headerLargeTitle: false }} />
+    <Stack.Screen name="Explore" component={ExploreScreen} options={{ title: 'Explore Toronto', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }} />
+    <Stack.Screen name="LocationDetail" component={LocationDetailScreen} options={{ title: '', headerTransparent: true, headerLargeTitle: false, headerShown: Platform.OS === 'ios' }} />
   </Stack.Navigator>
 );

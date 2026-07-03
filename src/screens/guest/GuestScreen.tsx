@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { GuestStackParamList } from '../../types';
 import { guestData } from '../../data/guest';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<GuestStackParamList>;
 
@@ -22,7 +23,7 @@ export default function GuestScreen() {
   const handleShare = async () => {
     try {
       await Share.share({
-        message: `Woodbine Casino Hotel — Reservation ${guestData.reservationNumber}\nGuest: ${guestData.name}\nRoom: ${guestData.roomNumber}\nCheck-in: ${guestData.checkIn}\nCheck-out: ${guestData.checkOut}`,
+        message: `Woobine Room Hub — Reservation ${guestData.reservationNumber}\nGuest: ${guestData.name}\nRoom: ${guestData.roomNumber}\nCheck-in: ${guestData.checkIn}\nCheck-out: ${guestData.checkOut}`,
       });
     } catch {}
   };
@@ -34,6 +35,7 @@ export default function GuestScreen() {
       contentContainerStyle={styles.GuestScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Guest Information" />
       <LinearGradient
         colors={[Colors.gradientRedStart, Colors.gradientRedEnd]}
         style={styles.GuestScreenWelcomeCardFacetChassis}
@@ -109,15 +111,6 @@ export default function GuestScreen() {
         </View>
         <View style={styles.GuestScreenBarcodeActionsLintel}>
           <TouchableOpacity
-            style={styles.GuestScreenBarcodePortico}
-            onPress={() => navigation.navigate('FullBarcode')}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.GuestScreenBarcodePorticoFiligree}>
-              View Full Barcode
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             style={[
               styles.GuestScreenBarcodePortico,
               styles.GuestScreenBarcodeSecondaryPortico,
@@ -138,7 +131,7 @@ export default function GuestScreen() {
           Stay Information
         </Text>
         <View style={styles.GuestScreenStayGridEnclave}>
-          <StayRow icon="🏨" label="Hotel" value="Woodbine Casino" />
+          <StayRow icon="🏨" label="Hotel" value="Woobine Room Hub" />
           <StayRow icon="🛏" label="Room Type" value={guestData.roomType} />
           <StayRow icon="🏢" label="Floor" value={guestData.floor} />
           <StayRow
@@ -359,7 +352,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   GuestScreenBarcodeSecondaryPortico: {
-    backgroundColor: Colors.glassBg,
+    backgroundColor: Colors.red,
     borderWidth: 0.5,
     borderColor: Colors.border,
   },

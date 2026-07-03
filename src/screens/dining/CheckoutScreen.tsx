@@ -12,6 +12,7 @@ import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { DiningStackParamList } from '../../types';
 import { guestData } from '../../data/guest';
 import { useCart } from '../../hooks/useCart';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<DiningStackParamList>;
 
@@ -36,6 +37,7 @@ export default function CheckoutScreen() {
       contentContainerStyle={styles.CheckoutScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Checkout" onBack={() => navigation.goBack()} />
       {/* Guest info (disabled) */}
       <View style={styles.CheckoutScreenCardFacetChassis}>
         <Text style={styles.CheckoutScreenSectionTitleFiligree}>

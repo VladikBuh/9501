@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StatusBar,
   Animated,
+  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Colors, Spacing, Typography } from '../../theme';
@@ -38,7 +39,11 @@ export default function FullBarcodeScreen() {
         </Text>
       </TouchableOpacity>
 
-      <View style={styles.FullBarcodeScreenCenterContentEnclave}>
+      <ScrollView
+        style={styles.FullBarcodeScreenCenterContentEnclave}
+        contentContainerStyle={styles.FullBarcodeScreenCenterContentScroll}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Full width barcode */}
         <View style={styles.FullBarcodeScreenBarcodeEnclave}>
           {Array.from({ length: 90 }).map((_, i) => (
@@ -66,9 +71,9 @@ export default function FullBarcodeScreen() {
           <InfoLine label="Guest" value={guestData.name} />
           <InfoLine label="Room" value={guestData.roomNumber} />
           <InfoLine label="Reservation" value={guestData.reservationNumber} />
-          <InfoLine label="Hotel" value="Woodbine Casino" />
+          <InfoLine label="Hotel" value="Woobine Room Hub" />
         </View>
-      </View>
+      </ScrollView>
 
       <TouchableOpacity
         style={styles.FullBarcodeScreenBrightnessPortico}
@@ -110,9 +115,13 @@ const styles = StyleSheet.create({
   },
   FullBarcodeScreenCenterContentEnclave: {
     flex: 1,
+  },
+  FullBarcodeScreenCenterContentScroll: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     gap: Spacing.lg,
+    paddingVertical: Spacing.lg,
   },
   FullBarcodeScreenBarcodeEnclave: {
     flexDirection: 'row',

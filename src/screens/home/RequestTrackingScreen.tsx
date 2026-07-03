@@ -6,10 +6,11 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { useRoute, RouteProp } from '@react-navigation/native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { HomeStackParamList, RequestStatus } from '../../types';
 import { useRequests } from '../../hooks/useRequests';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Route = RouteProp<HomeStackParamList, 'RequestTracking'>;
 
@@ -28,6 +29,7 @@ const stepLabels: Record<RequestStatus, string> = {
 };
 
 export default function RequestTrackingScreen() {
+  const navigation = useNavigation();
   const route = useRoute<Route>();
   const { requestId } = route.params;
   const { requests } = useRequests();
@@ -36,6 +38,10 @@ export default function RequestTrackingScreen() {
   if (!req) {
     return (
       <View style={styles.RequestTrackingScreenFacetChassis}>
+        <ScreenTitleHeader
+          title="Track Request"
+          onBack={() => navigation.goBack()}
+        />
         <Text style={styles.RequestTrackingScreenErrorTextFiligree}>
           Request not found
         </Text>
@@ -52,6 +58,7 @@ export default function RequestTrackingScreen() {
       contentContainerStyle={styles.RequestTrackingScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Track Request" />
       {/* Header info */}
       <View style={styles.RequestTrackingScreenHeaderCardFacetChassis}>
         <Text style={styles.RequestTrackingScreenRequestIdFiligree}>

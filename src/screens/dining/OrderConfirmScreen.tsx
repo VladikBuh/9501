@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
@@ -39,6 +40,10 @@ export default function OrderConfirmScreen() {
 
   return (
     <View style={styles.OrderConfirmScreenFacetChassis}>
+      <ScrollView
+        contentContainerStyle={styles.OrderConfirmScreenScrollContent}
+        showsVerticalScrollIndicator={false}
+      >
       <Animated.View style={{ transform: [{ scale }] }}>
         <Text style={styles.OrderConfirmScreenIconSigil}>🍽️</Text>
       </Animated.View>
@@ -78,6 +83,7 @@ export default function OrderConfirmScreen() {
       >
         <Text style={styles.OrderConfirmScreenHomeBtnText}>Return to Menu</Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -94,9 +100,13 @@ const styles = StyleSheet.create({
   OrderConfirmScreenFacetChassis: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  OrderConfirmScreenScrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.xl,
     gap: Spacing.lg,
   },
 

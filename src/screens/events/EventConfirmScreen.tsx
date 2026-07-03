@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
@@ -38,6 +39,10 @@ export default function EventConfirmScreen() {
 
   return (
     <View style={styles.EventConfirmScreenFacetChassis}>
+      <ScrollView
+        contentContainerStyle={styles.EventConfirmScreenScrollContent}
+        showsVerticalScrollIndicator={false}
+      >
       <Animated.View
         style={[
           styles.EventConfirmScreenIconEnclave,
@@ -94,6 +99,7 @@ export default function EventConfirmScreen() {
           View My Reservations
         </Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -112,9 +118,13 @@ const styles = StyleSheet.create({
   EventConfirmScreenFacetChassis: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  EventConfirmScreenScrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.xl,
     gap: Spacing.md,
   },
 

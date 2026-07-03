@@ -17,6 +17,7 @@ import { EventsStackParamList } from '../../types';
 import { events, eventCategories, eventReservations } from '../../data/events';
 import { PressableCard } from '../../components/common/PressableCard';
 import { SectionHeader } from '../../components/common/SectionHeader';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<EventsStackParamList>;
 
@@ -43,6 +44,7 @@ export default function EventsScreen() {
         contentContainerStyle={styles.EventsScreenScrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <ScreenTitleHeader title="Hotel Events" />
         <SegmentedControl
           segments={segments}
           selected={segment}
@@ -106,6 +108,7 @@ export default function EventsScreen() {
       contentContainerStyle={styles.EventsScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Hotel Events" />
       <SegmentedControl
         segments={segments}
         selected={segment}

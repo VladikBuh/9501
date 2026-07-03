@@ -82,7 +82,7 @@ export default function HomeScreen() {
       >
         {/* Hero Banner */}
         <ImageBackground
-          source={require('../../assets/wood-room-hub-loader-bg.png')}
+          source={require('../../assets/wood-room-hub-onboardbg3.png')}
           style={styles.HomeScreenHeroEnclave}
           imageStyle={styles.HomeScreenHeroImage}
         >
@@ -98,7 +98,7 @@ export default function HomeScreen() {
           <View style={styles.HomeScreenHeroContentEnclave}>
             <Text style={styles.HomeScreenHeroSubFiligree}>Good evening</Text>
             <Text style={styles.HomeScreenHeroTitleFiligree}>
-              Welcome to{'\n'}Woodbine Casino
+              Welcome to{'\n'}Woobine Room Hub
             </Text>
             <Text style={styles.HomeScreenHeroDescriptionFiligree}>
               Enjoy premium hotel services during your stay.
@@ -122,7 +122,7 @@ export default function HomeScreen() {
             </View>
             <View style={styles.HomeScreenInfoTextsEnclave}>
               <Text style={styles.HomeScreenInfoNameFiligree}>
-                Woodbine Casino
+                Woobine Room Hub
               </Text>
               <Text style={styles.HomeScreenInfoSubFiligree}>
                 555 Rexdale Blvd, Toronto, ON

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Platform,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -59,6 +60,17 @@ export default function FoodDetailScreen() {
             ]}
             style={styles.FoodDetailScreenHeroGradient}
           />
+          {Platform.OS === 'android' && (
+            <TouchableOpacity
+              style={[
+                styles.FoodDetailScreenBackPortico,
+                { top: insets.top + 12 },
+              ]}
+              onPress={() => navigation.goBack()}
+            >
+              <Text style={styles.FoodDetailScreenBackPorticoFiligree}>‹</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.FoodDetailScreenScrollContent}>
@@ -161,25 +173,25 @@ export default function FoodDetailScreen() {
             />
           </View>
         </View>
+        <View
+          style={[
+            styles.FoodDetailScreenBottomBarLintel,
+            { paddingBottom: insets.bottom + 1 },
+          ]}
+        >
+          <TouchableOpacity
+            style={styles.FoodDetailScreenAddPortico}
+            onPress={handleAdd}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.FoodDetailScreenAddPorticoFiligree}>
+              Add {qty} to Order · ${(item.price * qty).toFixed(0)} CAD
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
 
       {/* Fixed add to cart */}
-      <View
-        style={[
-          styles.FoodDetailScreenBottomBarLintel,
-          { paddingBottom: insets.bottom + 16 },
-        ]}
-      >
-        <TouchableOpacity
-          style={styles.FoodDetailScreenAddPortico}
-          onPress={handleAdd}
-          activeOpacity={0.85}
-        >
-          <Text style={styles.FoodDetailScreenAddPorticoFiligree}>
-            Add {qty} to Order · ${(item.price * qty).toFixed(0)} CAD
-          </Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -198,6 +210,21 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 120,
+  },
+  FoodDetailScreenBackPortico: {
+    position: 'absolute',
+    left: Spacing.md,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  FoodDetailScreenBackPorticoFiligree: {
+    ...Typography.title2,
+    color: Colors.white,
+    marginTop: -2,
   },
 
   FoodDetailScreenScrollContent: { padding: Spacing.md, gap: Spacing.md },

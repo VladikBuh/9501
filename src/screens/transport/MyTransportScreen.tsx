@@ -15,6 +15,7 @@ import { TransportReservation } from '../../types';
 import { TransportStackParamList } from '../../types';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { EmptyState } from '../../components/common/EmptyState';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<TransportStackParamList>;
 
@@ -67,11 +68,17 @@ export default function MyTransportScreen() {
 
   if (reservations.length === 0) {
     return (
-      <EmptyState
-        icon="🚗"
-        title="No Reservations"
-        description="Book a vehicle to see your reservations here."
-      />
+      <View style={styles.MyTransportScreenFacetChassis}>
+        <ScreenTitleHeader
+          title="My Reservations"
+          onBack={() => navigation.goBack()}
+        />
+        <EmptyState
+          icon="🚗"
+          title="No Reservations"
+          description="Book a vehicle to see your reservations here."
+        />
+      </View>
     );
   }
 
@@ -82,6 +89,7 @@ export default function MyTransportScreen() {
       contentContainerStyle={styles.MyTransportScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="My Reservations" />
       {active.length > 0 && (
         <>
           <Text style={styles.MyTransportScreenSectionLabelFiligree}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { TransportStackParamList } from '../types';
@@ -20,8 +21,8 @@ export const TransportStack = () => (
       contentStyle: { backgroundColor: Colors.background },
     }}
   >
-    <Stack.Screen name="Transport" component={TransportScreen} options={{ title: 'Transportation', headerLargeTitle: true }} />
+    <Stack.Screen name="Transport" component={TransportScreen} options={{ title: 'Transportation', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }} />
     <Stack.Screen name="TransportConfirm" component={TransportConfirmScreen} options={{ title: '', headerShown: false }} />
-    <Stack.Screen name="MyTransport" component={MyTransportScreen} options={{ title: 'My Reservations', headerLargeTitle: true }} />
+    <Stack.Screen name="MyTransport" component={MyTransportScreen} options={{ title: 'My Reservations', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }} />
   </Stack.Navigator>
 );

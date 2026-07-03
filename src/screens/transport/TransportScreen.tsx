@@ -20,6 +20,7 @@ import { vehicles, pickupLocations } from '../../data/vehicles';
 import { locations } from '../../data/locations';
 
 import { PressableCard } from '../../components/common/PressableCard';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<TransportStackParamList>;
 
@@ -43,6 +44,7 @@ export default function TransportScreen() {
         style={styles.TransportScreenFacetChassis}
         contentContainerStyle={styles.TransportScreenScrollContent}
       >
+        <ScreenTitleHeader title="Transportation" />
         <SegControl
           segments={segments}
           selected={segment}
@@ -89,6 +91,7 @@ export default function TransportScreen() {
       contentContainerStyle={styles.TransportScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Transportation" />
       <SegControl
         segments={segments}
         selected={segment}

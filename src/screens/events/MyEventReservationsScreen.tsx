@@ -8,14 +8,17 @@ import {
   Image,
   Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { eventReservations as initialReservations } from '../../data/events';
 import { EventReservation } from '../../types';
 import { getImage } from '../../assets/images';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { EmptyState } from '../../components/common/EmptyState';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 export default function MyEventReservationsScreen() {
+  const navigation = useNavigation();
   const [reservations, setReservations] =
     useState<EventReservation[]>(initialReservations);
 
@@ -49,11 +52,17 @@ export default function MyEventReservationsScreen() {
 
   if (reservations.length === 0) {
     return (
-      <EmptyState
-        icon="🎭"
-        title="No Reservations"
-        description="Reserve an event to see it here."
-      />
+      <View style={styles.MyEventReservationsScreenFacetChassis}>
+        <ScreenTitleHeader
+          title="My Reservations"
+          onBack={() => navigation.goBack()}
+        />
+        <EmptyState
+          icon="🎭"
+          title="No Reservations"
+          description="Reserve an event to see it here."
+        />
+      </View>
     );
   }
 
@@ -64,6 +73,7 @@ export default function MyEventReservationsScreen() {
       contentContainerStyle={styles.MyEventReservationsScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="My Reservations" />
       {reservations.map(res => (
         <View
           key={res.id}

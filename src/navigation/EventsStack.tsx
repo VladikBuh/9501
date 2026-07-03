@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { EventsStackParamList } from '../types';
@@ -23,11 +24,11 @@ export const EventsStack = () => (
       contentStyle: { backgroundColor: Colors.background },
     }}
   >
-    <Stack.Screen name="Events" component={EventsScreen} options={{ title: 'Hotel Events', headerLargeTitle: true }} />
-    <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: '', headerTransparent: true, headerLargeTitle: false }} />
+    <Stack.Screen name="Events" component={EventsScreen} options={{ title: 'Hotel Events', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }} />
+    <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: '', headerTransparent: true, headerLargeTitle: false, headerShown: Platform.OS === 'ios' }} />
     <Stack.Screen name="EventReserve" component={EventReserveScreen} options={{ title: 'Reserve Event', presentation: 'modal', headerLargeTitle: false }} />
     <Stack.Screen name="EventConfirm" component={EventConfirmScreen} options={{ title: '', headerShown: false }} />
-    <Stack.Screen name="MyEventReservations" component={MyEventReservationsScreen} options={{ title: 'My Reservations', headerLargeTitle: true }} />
-    <Stack.Screen name="CategoryEvents" component={CategoryEventsScreen} options={({ route }) => ({ title: route.params.category, headerLargeTitle: true })} />
+    <Stack.Screen name="MyEventReservations" component={MyEventReservationsScreen} options={{ title: 'My Reservations', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }} />
+    <Stack.Screen name="CategoryEvents" component={CategoryEventsScreen} options={({ route }) => ({ title: route.params.category, headerLargeTitle: true, headerShown: Platform.OS === 'ios' })} />
   </Stack.Navigator>
 );

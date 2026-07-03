@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Platform,
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -16,6 +17,7 @@ import { menuItems } from '../../data/menuItems';
 import { PressableCard } from '../../components/common/PressableCard';
 import { useCart } from '../../hooks/useCart';
 import { getImage } from '../../assets/images';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<DiningStackParamList>;
 type Route = RouteProp<DiningStackParamList, 'FoodCategory'>;
@@ -57,6 +59,31 @@ export default function FoodCategoryScreen() {
       contentContainerStyle={styles.FoodCategoryScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      {Platform.OS === 'android' && (
+        <View style={styles.FoodCategoryScreenTitleRowLintel}>
+          <ScreenTitleHeader
+            title={category}
+            onBack={() => navigation.goBack()}
+          />
+          {totalItems > 0 && (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Cart')}
+              activeOpacity={0.7}
+            >
+              <View style={styles.FoodCategoryScreenCartHeaderPortico}>
+                <Text style={styles.FoodCategoryScreenCartHeaderEmojiSigil}>
+                  🛒
+                </Text>
+                <View style={styles.FoodCategoryScreenCartHeaderChipBadge}>
+                  <Text style={styles.FoodCategoryScreenCartHeaderChipFiligree}>
+                    {totalItems > 9 ? '9+' : totalItems}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
       {items.map(item => (
         <PressableCard
           key={item.id}
@@ -118,6 +145,11 @@ const styles = StyleSheet.create({
   FoodCategoryScreenFacetChassis: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  FoodCategoryScreenTitleRowLintel: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
   },
   FoodCategoryScreenScrollContent: {
     padding: Spacing.md,

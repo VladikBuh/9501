@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../theme';
 import { GuestStackParamList } from '../types';
@@ -22,7 +23,7 @@ export const GuestStack = () => (
     <Stack.Screen
       name="Guest"
       component={GuestScreen}
-      options={{ title: 'Guest Information', headerLargeTitle: true }}
+      options={{ title: 'Guest Information', headerLargeTitle: true, headerShown: Platform.OS === 'ios' }}
     />
     <Stack.Screen
       name="FullBarcode"

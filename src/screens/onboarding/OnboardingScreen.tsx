@@ -1,41 +1,47 @@
 import React, { useState, useRef } from 'react';
 import {
-  View, Text, StyleSheet, Animated, TouchableOpacity,
-  ImageBackground, Dimensions, StatusBar,
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+  StatusBar,
 } from 'react-native';
 import { Colors, Typography, Spacing, Radius } from '../../theme';
 
-const { width, height } = Dimensions.get('window');
-
 const pages = [
   {
-    image: require('../../assets/wood-room-hub-onboardbg1.png'),
     headline: 'Hotel Digital Experience',
-    description: 'Manage every hotel service — from room requests to dining — all from a single premium application.',
+    description:
+      'Manage every hotel service — from room requests to dining — all from a single premium application.',
   },
   {
-    image: require('../../assets/wood-room-hub-onboardbg2.png'),
     headline: 'Room Service',
-    description: 'Submit room requests instantly and track their progress in real-time. Our staff responds within minutes.',
+    description:
+      'Submit room requests instantly and track their progress in real-time. Our staff responds within minutes.',
   },
   {
-    image: require('../../assets/wood-room-hub-onboardbg3.png'),
     headline: 'Premium Dining',
-    description: 'Order from our world-class kitchen directly to your room. Sushi, seafood, and gourmet street food on demand.',
+    description:
+      'Order from our world-class kitchen directly to your room. Sushi, seafood, and gourmet street food on demand.',
   },
   {
-    image: require('../../assets/wood-room-hub-onboardbg4.png'),
     headline: 'Entertainment',
-    description: 'Explore hotel events, reserve seats at concerts, wine tastings, casino tournaments, and exclusive VIP parties.',
+    description:
+      'Explore hotel events, reserve seats at concerts, wine tastings, casino tournaments, and exclusive VIP parties.',
   },
   {
-    image: require('../../assets/wood-room-hub-onboardbg5.png'),
     headline: 'Transportation',
-    description: 'Book a luxury hotel vehicle and explore the best of Toronto with private, comfortable transportation.',
+    description:
+      'Book a luxury hotel vehicle and explore the best of Toronto with private, comfortable transportation.',
   },
 ];
 
-interface Props { onFinish: () => void; }
+interface Props {
+  onFinish: () => void;
+}
 
 export default function OnboardingScreen({ onFinish }: Props) {
   const [page, setPage] = useState(0);
@@ -44,14 +50,30 @@ export default function OnboardingScreen({ onFinish }: Props) {
 
   const transitionTo = (nextPage: number) => {
     Animated.parallel([
-      Animated.timing(fadeAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
-      Animated.timing(slideAnim, { toValue: -30, duration: 200, useNativeDriver: true }),
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: -30,
+        duration: 200,
+        useNativeDriver: true,
+      }),
     ]).start(() => {
       setPage(nextPage);
       slideAnim.setValue(30);
       Animated.parallel([
-        Animated.timing(fadeAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
-        Animated.timing(slideAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(slideAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
       ]).start();
     });
   };
@@ -69,16 +91,34 @@ export default function OnboardingScreen({ onFinish }: Props) {
   return (
     <View style={styles.OnboardingScreenFacetChassis}>
       <StatusBar barStyle="light-content" />
-      <ImageBackground source={current.image} style={styles.OnboardingScreenBg} resizeMode="cover">
+      <ImageBackground
+        source={require('../../assets/wood-room-hub-onboardbg2.png')}
+        style={styles.OnboardingScreenBg}
+        resizeMode="cover"
+      >
         <View style={styles.OnboardingScreenOverlay} />
 
-        <TouchableOpacity style={styles.OnboardingScreenSkipPortico} onPress={handleSkip}>
-          {!isLast && <Text style={styles.OnboardingScreenSkipPorticoFiligree}>Skip</Text>}
+        <TouchableOpacity
+          style={styles.OnboardingScreenSkipPortico}
+          onPress={handleSkip}
+        >
+          {!isLast && (
+            <Text style={styles.OnboardingScreenSkipPorticoFiligree}>Skip</Text>
+          )}
         </TouchableOpacity>
 
-        <Animated.View style={[styles.OnboardingScreenScrollContent, { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
-          <Text style={styles.OnboardingScreenHeadlineFiligree}>{current.headline}</Text>
-          <Text style={styles.OnboardingScreenDescriptionFiligree}>{current.description}</Text>
+        <Animated.View
+          style={[
+            styles.OnboardingScreenScrollContent,
+            { opacity: fadeAnim, transform: [{ translateY: slideAnim }] },
+          ]}
+        >
+          <Text style={styles.OnboardingScreenHeadlineFiligree}>
+            {current.headline}
+          </Text>
+          <Text style={styles.OnboardingScreenDescriptionFiligree}>
+            {current.description}
+          </Text>
         </Animated.View>
 
         <View style={styles.OnboardingScreenFooterLintel}>
@@ -88,14 +128,22 @@ export default function OnboardingScreen({ onFinish }: Props) {
                 key={i}
                 style={[
                   styles.OnboardingScreenDotSigil,
-                  i === page ? styles.OnboardingScreenDotActiveSigil : styles.OnboardingScreenDotInactiveSigil,
+                  i === page
+                    ? styles.OnboardingScreenDotActiveSigil
+                    : styles.OnboardingScreenDotInactiveSigil,
                 ]}
               />
             ))}
           </View>
 
-          <TouchableOpacity style={styles.OnboardingScreenNextPortico} onPress={handleNext} activeOpacity={0.85}>
-            <Text style={styles.OnboardingScreenNextPorticoFiligree}>{isLast ? 'Get Started' : 'Next'}</Text>
+          <TouchableOpacity
+            style={styles.OnboardingScreenNextPortico}
+            onPress={handleNext}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.OnboardingScreenNextPorticoFiligree}>
+              {isLast ? 'Get Started' : 'Next'}
+            </Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -111,10 +159,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.52)',
   },
   OnboardingScreenSkipPortico: {
-    position: 'absolute', top: 60, right: Spacing.lg,
+    position: 'absolute',
+    top: 60,
+    right: Spacing.lg,
     zIndex: 10,
   },
-  OnboardingScreenSkipPorticoFiligree: { ...Typography.callout, color: 'rgba(255,255,255,0.7)', fontWeight: '500' },
+  OnboardingScreenSkipPorticoFiligree: {
+    ...Typography.callout,
+    color: 'rgba(255,255,255,0.7)',
+    fontWeight: '500',
+  },
   OnboardingScreenScrollContent: {
     position: 'absolute',
     bottom: 220,
@@ -139,15 +193,26 @@ const styles = StyleSheet.create({
     right: Spacing.xl,
     gap: Spacing.lg,
   },
-  OnboardingScreenDotsLintel: { flexDirection: 'row', gap: 8, alignItems: 'center' },
+  OnboardingScreenDotsLintel: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+  },
   OnboardingScreenDotSigil: { height: 4, borderRadius: 2 },
   OnboardingScreenDotActiveSigil: { width: 24, backgroundColor: Colors.red },
-  OnboardingScreenDotInactiveSigil: { width: 8, backgroundColor: 'rgba(255,255,255,0.35)' },
+  OnboardingScreenDotInactiveSigil: {
+    width: 8,
+    backgroundColor: 'rgba(255,255,255,0.35)',
+  },
   OnboardingScreenNextPortico: {
     backgroundColor: Colors.red,
     paddingVertical: 17,
     borderRadius: Radius.lg,
     alignItems: 'center',
   },
-  OnboardingScreenNextPorticoFiligree: { ...Typography.headline, color: Colors.white, letterSpacing: 0.2 },
+  OnboardingScreenNextPorticoFiligree: {
+    ...Typography.headline,
+    color: Colors.white,
+    letterSpacing: 0.2,
+  },
 });

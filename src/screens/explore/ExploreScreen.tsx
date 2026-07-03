@@ -15,6 +15,7 @@ import { ExploreStackParamList } from '../../types';
 import { locations, locationCategories } from '../../data/locations';
 import { PressableCard } from '../../components/common/PressableCard';
 import { getImage } from '../../assets/images';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<ExploreStackParamList>;
 
@@ -41,6 +42,7 @@ export default function ExploreScreen() {
       contentContainerStyle={styles.ExploreScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title="Explore Toronto" />
       {/* Search */}
       <View style={styles.ExploreScreenSearchBarPortico}>
         <Text style={styles.ExploreScreenSearchIconSigil}>🔍</Text>

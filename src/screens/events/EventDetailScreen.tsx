@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import { getImage } from '../../assets/images';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
@@ -44,6 +45,17 @@ export default function EventDetailScreen() {
             ]}
             style={styles.EventDetailScreenHeroGradient}
           />
+          {Platform.OS === 'android' && (
+            <TouchableOpacity
+              style={[
+                styles.EventDetailScreenBackPortico,
+                { top: insets.top + 12 },
+              ]}
+              onPress={() => navigation.goBack()}
+            >
+              <Text style={styles.EventDetailScreenBackPorticoFiligree}>‹</Text>
+            </TouchableOpacity>
+          )}
           <View
             style={[
               styles.EventDetailScreenHeroContentEnclave,
@@ -107,31 +119,29 @@ export default function EventDetailScreen() {
             </View>
           )}
         </View>
-      </ScrollView>
-
-      {/* Fixed bottom button */}
-      <View
-        style={[
-          styles.EventDetailScreenBottomBarLintel,
-          { paddingBottom: insets.bottom + 16 },
-        ]}
-      >
-        <View style={styles.EventDetailScreenPriceWrap}>
-          <Text style={styles.EventDetailScreenPriceLabel}>per person</Text>
-          <Text style={styles.EventDetailScreenPriceFiligree}>
-            ${event.price} CAD
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={styles.EventDetailScreenReservePortico}
-          onPress={() => navigation.navigate('EventReserve', { event })}
-          activeOpacity={0.85}
+        <View
+          style={[
+            styles.EventDetailScreenBottomBarLintel,
+            { paddingBottom: insets.bottom + 1 },
+          ]}
         >
-          <Text style={styles.EventDetailScreenReservePorticoFiligree}>
-            Reserve Event
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.EventDetailScreenPriceWrap}>
+            <Text style={styles.EventDetailScreenPriceLabel}>per person</Text>
+            <Text style={styles.EventDetailScreenPriceFiligree}>
+              ${event.price} CAD
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={styles.EventDetailScreenReservePortico}
+            onPress={() => navigation.navigate('EventReserve', { event })}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.EventDetailScreenReservePorticoFiligree}>
+              Reserve Event
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -164,6 +174,21 @@ const styles = StyleSheet.create({
   },
 
   EventDetailScreenHeroGradient: { ...StyleSheet.absoluteFill },
+  EventDetailScreenBackPortico: {
+    position: 'absolute',
+    left: Spacing.md,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  EventDetailScreenBackPorticoFiligree: {
+    ...Typography.title2,
+    color: Colors.white,
+    marginTop: -2,
+  },
   EventDetailScreenHeroContentEnclave: { padding: Spacing.md },
   EventDetailScreenCategoryChipBadge: {
     backgroundColor: Colors.redMuted,

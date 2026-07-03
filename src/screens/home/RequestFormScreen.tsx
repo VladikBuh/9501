@@ -14,6 +14,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Colors, Spacing, Typography, Radius, Shadows } from '../../theme';
 import { HomeStackParamList, Priority } from '../../types';
 import { useRequests } from '../../hooks/useRequests';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<HomeStackParamList>;
 type Route = RouteProp<HomeStackParamList, 'RequestForm'>;
@@ -55,6 +56,10 @@ export default function RequestFormScreen() {
         contentContainerStyle={styles.RequestFormScreenScrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <ScreenTitleHeader
+          title="New Request"
+          onBack={() => navigation.goBack()}
+        />
         {/* Category display */}
         <View
           style={[

@@ -16,6 +16,7 @@ import { events } from '../../data/events';
 import { PressableCard } from '../../components/common/PressableCard';
 
 import { EmptyState } from '../../components/common/EmptyState';
+import { ScreenTitleHeader } from '../../components/common/ScreenTitleHeader';
 
 type Nav = NativeStackNavigationProp<EventsStackParamList>;
 type Route = RouteProp<EventsStackParamList, 'CategoryEvents'>;
@@ -28,11 +29,14 @@ export default function CategoryEventsScreen() {
 
   if (filtered.length === 0) {
     return (
-      <EmptyState
-        icon={categoryIcon}
-        title="No Events"
-        description="No events in this category right now."
-      />
+      <View style={styles.CategoryEventsScreenFacetChassis}>
+        <ScreenTitleHeader title={category} onBack={() => navigation.goBack()} />
+        <EmptyState
+          icon={categoryIcon}
+          title="No Events"
+          description="No events in this category right now."
+        />
+      </View>
     );
   }
 
@@ -43,6 +47,7 @@ export default function CategoryEventsScreen() {
       contentContainerStyle={styles.CategoryEventsScreenScrollContent}
       showsVerticalScrollIndicator={false}
     >
+      <ScreenTitleHeader title={category} />
       {filtered.map(ev => (
         <PressableCard
           key={ev.id}

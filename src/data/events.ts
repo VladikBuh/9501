@@ -22,7 +22,7 @@ export const events: Event[] = [
     description: 'Join our prestigious annual poker tournament featuring $50,000 in prizes and competing alongside the best card players in the region.',
     date: 'Jul 4, 2026', time: '6:00 PM', duration: '4 hours', venue: 'Diamond Gaming Floor',
     remainingSeats: 8, price: 250, image: 'CasinoTournamentsGamingEvents',
-    dressCode: 'Business Formal', ageRestriction: '19+', organizer: 'Woodbine Casino',
+    dressCode: 'Business Formal', ageRestriction: '19+', organizer: 'Woobine Room Hub',
     includedServices: ['Starting chips included', 'Dinner buffet', 'VIP lounge access'],
   },
   {
