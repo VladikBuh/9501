@@ -1,4 +1,4 @@
-package com.woodroomhub
+package com.woobineguest.hub
 
 import android.app.Application
 import com.facebook.react.PackageList

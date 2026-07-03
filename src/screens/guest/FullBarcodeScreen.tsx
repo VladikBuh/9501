@@ -71,7 +71,7 @@ export default function FullBarcodeScreen() {
           <InfoLine label="Guest" value={guestData.name} />
           <InfoLine label="Room" value={guestData.roomNumber} />
           <InfoLine label="Reservation" value={guestData.reservationNumber} />
-          <InfoLine label="Hotel" value="Woobine Room Hub" />
+          <InfoLine label="Hotel" value="Woobine Guest Hub" />
         </View>
       </ScrollView>
 

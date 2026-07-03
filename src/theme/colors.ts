@@ -1,6 +1,6 @@
 export const Colors = {
   // Backgrounds
-  background: '#0A0A0A',
+  background: 'rgba(38, 2, 2, 1)',
   backgroundElevated: '#111111',
   backgroundCard: '#161616',
   backgroundCardElevated: '#1C1C1C',

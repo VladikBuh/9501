@@ -23,7 +23,7 @@ export default function GuestScreen() {
   const handleShare = async () => {
     try {
       await Share.share({
-        message: `Woobine Room Hub — Reservation ${guestData.reservationNumber}\nGuest: ${guestData.name}\nRoom: ${guestData.roomNumber}\nCheck-in: ${guestData.checkIn}\nCheck-out: ${guestData.checkOut}`,
+        message: `Woobine Guest Hub — Reservation ${guestData.reservationNumber}\nGuest: ${guestData.name}\nRoom: ${guestData.roomNumber}\nCheck-in: ${guestData.checkIn}\nCheck-out: ${guestData.checkOut}`,
       });
     } catch {}
   };
@@ -131,7 +131,7 @@ export default function GuestScreen() {
           Stay Information
         </Text>
         <View style={styles.GuestScreenStayGridEnclave}>
-          <StayRow icon="🏨" label="Hotel" value="Woobine Room Hub" />
+          <StayRow icon="🏨" label="Hotel" value="Woobine Guest Hub" />
           <StayRow icon="🛏" label="Room Type" value={guestData.roomType} />
           <StayRow icon="🏢" label="Floor" value={guestData.floor} />
           <StayRow

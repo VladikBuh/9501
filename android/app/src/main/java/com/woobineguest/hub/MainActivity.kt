@@ -1,4 +1,4 @@
-package com.woodroomhub
+package com.woobineguest.hub
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

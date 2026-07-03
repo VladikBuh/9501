@@ -98,7 +98,7 @@ export default function HomeScreen() {
           <View style={styles.HomeScreenHeroContentEnclave}>
             <Text style={styles.HomeScreenHeroSubFiligree}>Good evening</Text>
             <Text style={styles.HomeScreenHeroTitleFiligree}>
-              Welcome to{'\n'}Woobine Room Hub
+              Welcome to{'\n'}Woobine Guest Hub
             </Text>
             <Text style={styles.HomeScreenHeroDescriptionFiligree}>
               Enjoy premium hotel services during your stay.
@@ -122,7 +122,7 @@ export default function HomeScreen() {
             </View>
             <View style={styles.HomeScreenInfoTextsEnclave}>
               <Text style={styles.HomeScreenInfoNameFiligree}>
-                Woobine Room Hub
+                Woobine Guest Hub
               </Text>
               <Text style={styles.HomeScreenInfoSubFiligree}>
                 555 Rexdale Blvd, Toronto, ON
