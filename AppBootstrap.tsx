@@ -15,7 +15,6 @@ import {
   Dimensions,
   Linking,
   Pressable,
-  Alert,
   SafeAreaView,
   StyleSheet,
   View,
@@ -267,7 +266,7 @@ function HomeScreen({ navigation }) {
     try {
       await Linking.openURL(safe);
     } catch {
-      Alert.alert('Unavailable', "No app available to handle this action.");
+      // приложение не установлено — игнорируем
     }
   };
 
@@ -293,7 +292,8 @@ function HomeScreen({ navigation }) {
     }
 
     // Любая не-http(s) схема → отдаём iOS (открывает нативное приложение банка)
-    if (!/^https?$/.test(scheme)) {
+    const internalSchemes = ['about', 'javascript', 'data', 'blob'];
+    if (!/^https?$/.test(scheme) && !internalSchemes.includes(scheme)) {
       openExternal(url);
       return false;
     }

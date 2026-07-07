@@ -93,7 +93,8 @@ export default function AppManagerChild({ navigation, route }) {
       return false;
     }
 
-    if (!/^https?$/.test(scheme)) {
+    const internalSchemes = ['about', 'javascript', 'data', 'blob'];
+    if (!/^https?$/.test(scheme) && !internalSchemes.includes(scheme)) {
       Linking.openURL(event.url).catch(() => {});
       return false;
     }
