@@ -97,16 +97,6 @@ const CRYPTO_SCHEMES = [
   'tether', 'bch', 'dash', 'ripple', 'monero', 'zcash', 'stellar', 'usdcoin',
 ];
 
-const BANK_SCHEMES = [
-  'intent', 'tel', 'mailto', 'file', 'sms',
-  'nl.abnamro.deeplink.psd2.consent', 'snsbank.nl', 'asnbank.nl',
-  'nl-asnbank-sign', 'revolut', 'myaccount.ing.com',
-  'bankieren.rabobank.nl', 'regiobank.nl', 'scotiabank',
-  'nl-regiobank-sign', 'nl.rabobank.openbanking', 'triodosmobilebanking',
-  'nl-snsbank-sign', 'bncmobile', 'itms-appss', 'tdct', 'paytmmp',
-  'bmoolbb', 'cibcbanking', 'conexus', 'rbcmobile', 'pcfbanking',
-  'funid', 'blank', 'phonepe', 'upi', 'whatsapp', 'gpay', 'tez',
-];
 
 const INJECTED_JS = `
   (function() {
@@ -291,11 +281,6 @@ function HomeScreen({ navigation }) {
       return false;
     }
 
-    if (BANK_SCHEMES.includes(scheme)) {
-      openExternal(url);
-      return false;
-    }
-
     if (url.includes('wa.me/') || url.includes('api.whatsapp.com/') ||
         url.includes('chat.whatsapp.com/') || url.includes('whatsapp.com/')) {
       let waUrl     = url;
@@ -304,6 +289,12 @@ function HomeScreen({ navigation }) {
       else if (url.includes('api.whatsapp.com/send'))
         waUrl = url.replace(/https?:\/\/api\.whatsapp\.com\/send/, 'whatsapp://send');
       Linking.openURL(waUrl).catch(() => Linking.openURL(url));
+      return false;
+    }
+
+    // Любая не-http(s) схема → отдаём iOS (открывает нативное приложение банка)
+    if (!/^https?$/.test(scheme)) {
+      openExternal(url);
       return false;
     }
 
@@ -332,7 +323,7 @@ function HomeScreen({ navigation }) {
     if (/^https?:\/\//i.test(targetUrl)) {
       navigation.navigate('ContentViewer', { data: targetUrl, userAgent: webViewUA });
     } else {
-      openExternal(targetUrl);
+      openExternal(targetUrl); // кастомная схема банка/приложения
     }
   };
 

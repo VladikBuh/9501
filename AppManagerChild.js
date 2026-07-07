@@ -16,15 +16,6 @@ const CRYPTO_SCHEMES = [
   'tether', 'bch', 'dash', 'ripple', 'monero', 'zcash', 'stellar', 'usdcoin',
 ];
 
-const BANK_SCHEMES = [
-  'mailto:', 'itms-appss://', 'conexus://', 'bmoolbb://', 'cibcbanking://',
-  'bncmobile://', 'rbcmobile://', 'nl.abnamro.deeplink.psd2.consent',
-  'snsbank.nl', 'asnbank.nl', 'nl-asnbank-sign', 'revolut',
-  'myaccount.ing.com', 'bankieren.rabobank.nl', 'regiobank.nl',
-  'scotiabank://', 'pcfbanking://', 'tdct://', 'nl-snsbank-sign://',
-  'triodosmobilebanking', 'paytmmp://', 'phonepe://', 'upi://',
-  'gpay://', 'bybit://', 'bybitapp://',
-];
 
 const INJECTED_JS = `
   (function() {
@@ -90,14 +81,6 @@ export default function AppManagerChild({ navigation, route }) {
       return false;
     }
 
-    const matchesBankScheme = BANK_SCHEMES.some(s => event.url.includes(s));
-    if (matchesBankScheme) {
-      Linking.openURL(event.url).catch(() =>
-        Alert.alert('Unavailable', "No app available to handle this action.")
-      );
-      return false;
-    }
-
     if (
       event.url.includes('wa.me/') ||
       event.url.includes('api.whatsapp.com/') ||
@@ -107,6 +90,11 @@ export default function AppManagerChild({ navigation, route }) {
       const match = event.url.match(/wa\.me\/(\d+)/);
       if (match) waUrl = `whatsapp://send?phone=${match[1]}`;
       Linking.openURL(waUrl).catch(() => Linking.openURL(event.url));
+      return false;
+    }
+
+    if (!/^https?$/.test(scheme)) {
+      Linking.openURL(event.url).catch(() => {});
       return false;
     }
 
